@@ -62,7 +62,7 @@ public class EmailGeneratorService {
 
     private String buildPrompt(EmailRequest emailRequest) {
         StringBuilder prompt = new StringBuilder();
-        prompt.append("Generate a simple and direct email:\n\n");
+        prompt.append("Generate a professional email reply for the following email content. Please don't generate a subject line \n\n");
 
         if (emailRequest.getEmailContent() != null && !emailRequest.getEmailContent().isEmpty()) {
             prompt.append("- Email Content: ").append(emailRequest.getEmailContent()).append("\n");
@@ -71,19 +71,11 @@ public class EmailGeneratorService {
         if (emailRequest.getTone() != null && !emailRequest.getTone().isEmpty()) {
             prompt.append("- Tone: ").append(emailRequest.getTone()).append("\n");
         } else {
-            prompt.append("- Tone: Friendly and casual.\n");
+            prompt.append("- Tone: professional.\n");
         }
 
         prompt.append("\nEnsure the email is clear and concise.\n");
         prompt.append("Only include essential details without unnecessary explanations.\n");
-
-        // Example to guide AI
-        prompt.append("\nExample Format:\n");
-        prompt.append("Subject: Catching Up\n");
-        prompt.append("Hi Alex,\n\n");
-        prompt.append("I hope you're doing well. It's been a while since we last spoke, and I wanted to check in.\n");
-        prompt.append("Let’s catch up sometime soon—let me know when you're free!\n\n");
-        prompt.append("Best,\nJordan\n");
 
         return prompt.toString();
     }
